@@ -4,8 +4,18 @@ import numpy as np
 from time import sleep
 
 def visualize(env, brain_name, agent, e = 962):
-    mean_scores = []
+    """
+    Used to visualize the agent.
+
+    Arguments:
+    env : Unity environment variable
+    brain_name : The brain name of the environment
+    agent : Multi-Agent instance
+    e : Episode number of the saved checkpoint to be loaded
+    """
+    #Agent is loaded with the checkpoint parameters
     agent.load(f'models/sac_actor_e{e}.pth',f'models/td3_actor_e{e}.pth')
+
     env_info = env.reset(train_mode=True)[brain_name]    
     states = env_info.vector_observations
     num_agents = len(env_info.agents)
@@ -33,7 +43,9 @@ def visualize(env, brain_name, agent, e = 962):
     
 
 if __name__ == '__main__':
+    #Initializing unity environment
     env = UnityEnvironment(file_name = 'data/Tennis/Tennis.exe')
+    
     brain_name = env.brain_names[0]
     brain = env.brains[brain_name]
 

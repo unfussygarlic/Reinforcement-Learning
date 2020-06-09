@@ -6,11 +6,24 @@ import pickle
 import matplotlib.pyplot as plt
 
 def trainer(state_size,action_size,num_agents,goal = 1.0,episodes = 5000,timesteps = 1000000):
+    """
+    Trainer function which is responsible for training the agent
+
+    Arguments:
+    state_size : Size of the state from environment.
+    action_size : Size of the action taken by the agent
+    num_agents : Total number of agents
+    goal : Threshold set for the agent to achieve
+    episodes : Total number of episodes for training
+    timesteps : Maximum timesteps the agent takes in a single episode
+    """
     agent = Agent(state_size,action_size,num_agents)
-    score_window = deque(maxlen = 100)
-    scores = []
-    max_score_window = deque(maxlen = 100)
-    max_scores = []
+
+    score_window = deque(maxlen = 100)              #Deque window for obtaining scores for 100 episodes
+    scores = []                                     #List containing mean scores across all episodes
+    max_score_window = deque(maxlen = 100)          #Deque for obtaining maximum of scores for 100 episodes
+    max_scores = []                                 #List containing maximum scores across all the episodes
+
     for episode in range(episodes):
         env_info = env.reset(train_mode=True)[brain_name]
         states = env_info.vector_observations
@@ -50,6 +63,13 @@ def trainer(state_size,action_size,num_agents,goal = 1.0,episodes = 5000,timeste
     return scores,max_scores
 
 def plot_scores(scores,name):
+    """
+    Plots the scores using Matplotlib
+
+    Arguments:
+    scores : Scores obtained from training
+    name : File name for saving
+    """
     fig = plt.figure(figsize=(8,8))
     ax = fig.add_subplot(111)
     plt.plot(np.arange(len(scores)), scores)
@@ -61,6 +81,13 @@ def plot_scores(scores,name):
     plt.close()
 
 def save_scores(scores,name):
+    """
+    Pickles scores in a text file for later observations
+
+    Arguments:
+    scores : Scores obtained from training
+    name : File name for saving
+    """
     with open(f"{name}.txt", "wb") as s:
         pickle.dump(scores, s)
 
