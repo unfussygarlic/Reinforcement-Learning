@@ -8,6 +8,17 @@ import glob
 class agent(object):
 
     def __init__(self,state_size,action_size,num_agents,mode = 'COLAB',lr = 3e-4,seed = 1234):
+        """ Multi agent responsible for mapping individual agents.
+
+        Keywork arguments:
+        state_size : Size of the state from environment.
+        action_size : Size of the action taken by the agent
+        num_agents : Total number of agents
+        mode : 'COLAB' uses shared replay buffer while 'COMPETE' uses separate buffers
+        lr : Common learning rate for both agents
+        seed : Seed value for reproducibility
+        """
+
         self.batch_size = 64
 
         agent1 = SACAgent(state_size,action_size,num_agents,lr,seed)
@@ -22,6 +33,8 @@ class agent(object):
         self.mode = mode
     
     def act(self,states):
+        """ Responsible for returning actions from agents given the states."""
+        
         actions = []
         for i in range(self.num_agents):
             actions.append(self.agents[i].act(states[i]))
