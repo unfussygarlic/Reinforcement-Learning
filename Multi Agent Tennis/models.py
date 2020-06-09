@@ -117,7 +117,8 @@ class SACPolicy(nn.Module):
         z = normal.rsample()
         action = torch.tanh(z)
 
-        log_prob = (normal.log_prob(z) - torch.log(1 - (torch.tanh(z)).pow(2) + epsilon)).sum(1,keepdims = True)
+        log_prob = (normal.log_prob(z) - torch.log(1 - (torch.tanh(z)).pow(2) + epsilon))
+        log_prob = log_prob.sum(1,keepdims = True)
 
         return action,log_prob
     
