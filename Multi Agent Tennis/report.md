@@ -1,5 +1,5 @@
-<center><h1> MULTI-AGENT TENNIS</h1> </center>
-<center><h3><b> Vishal Anand S</b></h3></center>
+<p align = "center"><h1> MULTI-AGENT TENNIS</h1> </p>
+<p align = "center"><h3><b> Vishal Anand S</b></h3></p>
 
 # Problem Statement  
 
@@ -49,22 +49,22 @@ The implementation contains two agents which play against each other using a sha
 During the first run, I set the goal to 0.6, which means when the average max scores over 100 episodes reaches this threshold, the environment is considered solved. The score graph is produced below.  
 
 <br>
-<center><img src="images/run1score.png" alt="drawing" width="500"/></center>
+<p align="center"><img src="images/run1score.png" alt="drawing" width="500"/></center>
 <br>
 As you can see initially the scores are low. This is caused due to exploration nature of the agents. During the run, the right agent (TD3) explored more than SAC and scored more than 600 points compared to the formar which was around 220. SAC's exploration is much more stable compared to TD3 which allowed it to gain the stability around 800 episodes. Environment was solved with 984 episodes as shown below:  
 <br>
 <br>
-<center><img src="images/run1.PNG" alt="drawing" width="500"/></center>  
+<p align="center"><img src="images/run1.PNG" width="500"/></p>  
 
 ## Run #2
 During the second run, the goal was set to 1.0 and the time steps were increased significantly (just to be safe!). The score graph is presented below:  
 <br>
-<center><img src="images/run2score.png" alt="drawing" width="500"/></center>
+<p align="center"><img src="images/run2score.png" alt="drawing" width="500"/></p>
 <br>
 The s reason why score graph looks similar to the above is due to the nature of the agents. During both the runs the agents intially explored in depth of the environmentd using the randomness in the training. Once it grasps the working of environment, the performance increases significantly better. As you can see, from episode 800 the agents start taking better actions and achieves better scores.  
 <br>
 <br>
-<center><img src="images/run2.PNG" alt="drawing" width="500"/></center>
+<p align="center"><img src="images/run2.PNG" width="500"/></p>
 <br>
 The agent achieves the score above 1.0 with less episodes than the previous run. The reasons can be due to the initialization of weights (or) change in learning path although the seed was same for both the runs. I don't have an exact explanation for this, but it happened.
 
